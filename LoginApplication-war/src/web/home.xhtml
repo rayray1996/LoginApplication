@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template/defaultTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+        <h:outputStylesheet library="css" name="defaultCss.css" />
+
+        <div class="center">
+            <h2 style="text-align: center">#{userLocaleManagedBean.getSelectedLocaleLanguage("Welcome")}, #{homeManagedBean.user.name}</h2>
+            <table style="margin: auto">
+                <tr>
+                    <td style="padding-right: 20px;">#{userLocaleManagedBean.getSelectedLocaleLanguage("Username")}</td>
+                    <td>#{homeManagedBean.user.username}</td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 20px;">#{userLocaleManagedBean.getSelectedLocaleLanguage("Role")}</td>
+                    <td>#{homeManagedBean.user.userRole}</td>
+                </tr>
+            </table>
+
+            <br/>
+            <hr/>
+
+            <ui:fragment rendered="#{homeManagedBean.manager}">
+                <h3 style="text-align:center">#{userLocaleManagedBean.getSelectedLocaleLanguage("Manager Access Only")}</h3>
+
+                <div style="text-align:center">
+                    <p:commandButton value="#{userLocaleManagedBean.translatedSecretPageString}" actionListener="#{homeManagedBean.goSecretPage}"/>
+                </div>
+
+                <br/>
+
+                <hr/>
+            </ui:fragment>
+
+            <p style="text-align: center;">#{userLocaleManagedBean.getSelectedLocaleLanguage("Have you finished what you wanted to do?")}</p>
+            <div style="text-align: center;">
+                <h:form>
+                    <p:commandButton value="#{userLocaleManagedBean.translatedLogoutString}" type="submit" actionListener="#{homeManagedBean.logout}"/>
+                </h:form>
+            </div>
+
+        </div>
+
+        <p:growl>
+            <p:autoUpdate>
+            </p:autoUpdate>
+        </p:growl>
+
+    </ui:define>
+    <ui:define name="footer">
+        footer
+    </ui:define>
+</ui:composition>
+

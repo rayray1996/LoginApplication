@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template/defaultTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+        <h:outputStylesheet library="css" name="defaultCss.css" />
+
+        <div class="center">
+            <h2 style="text-align:center;">#{userLocaleManagedBean.getSelectedLocaleLanguage("Create An User Account")}</h2>
+            <h:form>
+                <div>
+                    <span class="ui-float-label">
+                        <p:inputText style="width: 100%" id="float-input-name" value="#{createAccountManagedBean.name}" />
+                        <p:outputLabel for="@previous" value="">
+                            #{userLocaleManagedBean.getSelectedLocaleLanguage("Name")}
+                        </p:outputLabel>
+                    </span>
+
+                    <br/>
+
+                    <span class="ui-float-label">
+                        <p:inputText style="width: 100%" id="float-input-username" value="#{createAccountManagedBean.username}" />
+                        <p:outputLabel for="@previous" value="">
+                            #{userLocaleManagedBean.getSelectedLocaleLanguage("Username")}
+                        </p:outputLabel>
+                    </span>
+
+                    <br/>
+
+                    <span class="ui-float-label">
+                        <p:inputText style="width: 100%" id="float-input-password" value="#{createAccountManagedBean.password}" />
+                        <p:outputLabel for="@previous" value="Password">
+                            #{userLocaleManagedBean.getSelectedLocaleLanguage("Password")}
+
+                        </p:outputLabel>
+                    </span>
+
+                    <br/>
+
+                    <p:selectOneMenu style="width: 100%" id="role" value="#{createAccountManagedBean.userRole}">
+                        <f:selectItem itemLabel="#{userLocaleManagedBean.translatedSelectARoleString}" itemValue=" "/>
+                        <f:selectItem itemLabel="User" itemValue="user"/>
+                        <f:selectItem itemLabel="Manager" itemValue="manager"/>
+                    </p:selectOneMenu>
+
+                    <br/>                
+                    <br/>
+                </div>
+                <div style="text-align: center;">
+                    <p:commandButton value="#{userLocaleManagedBean.translatedCreateAccountString}" type="submit" actionListener="#{createAccountManagedBean.createAccount}"/>
+                </div>
+            </h:form>
+        </div>
+
+        <p:growl>
+            <p:autoUpdate>
+            </p:autoUpdate>
+        </p:growl>
+
+        <p:dialog showHeader="false" widgetVar="success" minHeight="40" width="350" showEffect="fade" modal="true" closable="false">
+            <h3 style="text-align: center">#{userLocaleManagedBean.getSelectedLocaleLanguage("Your account has been successfully created")}</h3>
+            <div style="text-align: center;">
+                <p:commandButton value="#{userLocaleManagedBean.translatedBackToLoginString}" actionListener="#{createAccountManagedBean.goLoginPage}"></p:commandButton>
+            </div>
+        </p:dialog>
+
+    </ui:define>
+    <ui:define name="footer">
+        footer
+    </ui:define>
+</ui:composition>
+

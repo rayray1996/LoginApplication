@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template/defaultTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+        <h:outputStylesheet library="css" name="defaultCss.css" />
+        <div class="center">
+            <h2 style="text-align:center;">Simple Login Application</h2>
+            <br/>
+            <h:form>
+                <div>
+                    <span class="ui-float-label">
+                        <p:inputText style="width: 100%" id="float-input-username" value="#{indexManagedBean.username}" />
+                        <p:outputLabel for="@previous" value="">
+                            #{userLocaleManagedBean.getSelectedLocaleLanguage("Username")}
+                        </p:outputLabel>
+                    </span>
+                    <br/>
+                    <span class="ui-float-label">
+                        <p:inputText style="width: 100%" id="float-input-password" value="#{indexManagedBean.password}" />
+                        <p:outputLabel for="@previous" value="">
+                            #{userLocaleManagedBean.getSelectedLocaleLanguage("Password")}
+                        </p:outputLabel>
+                    </span>
+                </div>
+
+                <br/>                    
+
+                <div style="text-align: center;">
+                    <p:commandButton value="#{userLocaleManagedBean.translatedLoginString}" type="submit" actionListener="#{indexManagedBean.login}"/>
+                </div>
+
+                <br/>
+                <hr/>
+
+                <div>
+                    <p style="text-align: center">#{userLocaleManagedBean.getSelectedLocaleLanguage("Not a user? Click the button below to register")}</p>
+                    <div style="text-align: center;">
+                        <p:commandButton value="#{userLocaleManagedBean.translatedRegisterString}" type="submit" actionListener="#{indexManagedBean.goRegister}"/>
+                    </div>
+                </div>
+
+            </h:form>
+        </div>
+
+        <p:growl>
+            <p:autoUpdate>
+            </p:autoUpdate>
+        </p:growl>
+
+    </ui:define>
+    <ui:define name="footer">
+        footer
+    </ui:define>
+</ui:composition>
+
